@@ -1,5 +1,6 @@
+// import 'package:syncfusion_flutter_charts/charts.dart';
+
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,22 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.amberAccent.shade400),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
@@ -39,18 +25,7 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -60,11 +35,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
       _counter++;
     });
   }
@@ -72,35 +42,105 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-          child: Container(
-            child: SfCartesianChart(
-              // Initialize category axis
-              primaryXAxis: CategoryAxis(),
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Row(children: const [
+         Icon(
+          Icons.data_exploration,
+          color: Colors.black54,),
+         Text(
+          "初めてのタイトル",
+           style: TextStyle(
+            color: Colors.black54
+           ),
+          ),
+       ]),
+      ),
 
-              series: <LineSeries<SalesData, String>>[
-                LineSeries<SalesData, String>(
-                  // Bind data source
-                  dataSource:  <SalesData>[
-                    SalesData('Jan', 35),
-                    SalesData('Feb', 28),
-                    SalesData('Mar', 34),
-                    SalesData('Apr', 32),
-                    SalesData('May', 40)
-                  ],
-                  xValueMapper: (SalesData sales, _) => sales.year,
-                  yValueMapper: (SalesData sales, _) => sales.sales
-                )
-              ]
-            )
-          )
-      )
+        body: Column(children: [
+          const Text('Hellow Wold!'),
+          const Text('Whats up Jhon Doe'),
+          TextButton(
+              onPressed: () => {print('Pressed')}, child: const Text('押すなよ')),
+          Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: const [
+                // https://api.flutter.dev/flutter/material/Icons-class.html
+                Icon(
+                  // Iconの指定
+                  Icons.favorite,
+                  // 色の指定
+                  color: Colors.pink,
+                  // サイズの指定
+                  size: 24.0,
+                ),
+                Icon(
+                  Icons.audiotrack,
+                  color: Colors.green,
+                  size: 30.0,
+                ),
+                Icon(
+                  Icons.beach_access,
+                  color: Colors.blue,
+                  size: 36.0,
+                ),
+              ]),
+        ]),
+        drawer: const Drawer(child: Center(child: Text("Drawer"))),
+        endDrawer: const Drawer(child: Center(child: Text("EndDrawer"))),
     );
   }
 }
 
-class SalesData {
-  SalesData(this.year, this.sales);
-  final String year;
-  final double sales;
-}
+
+// class _MyHomePageState extends State<MyHomePage> {
+//   @override
+//   // Widgetにツリー構造で定義していく
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//         appBar: AppBar(
+//           title: Row(
+//             children: const [
+//               Icon(
+//                 Icons.data_exploration,
+//                 color: Colors.black54,
+//                 size: 24
+//               ),
+//               Text('Counter')
+//             ]
+//           ),
+//         ),
+
+//         body: Column(children: [
+//           const Text('Hellow Wold!'),
+//           const Text('Whats up Jhon Doe'),
+//           TextButton(
+//               onPressed: () => {print('Pressed')}, child: const Text('押すなよ')),
+//           Row(
+//               mainAxisAlignment: MainAxisAlignment.spaceAround,
+//               children: const [
+//                 // https://api.flutter.dev/flutter/material/Icons-class.html
+//                 Icon(
+//                   // Iconの指定
+//                   Icons.favorite,
+//                   // 色の指定
+//                   color: Colors.pink,
+//                   // サイズの指定
+//                   size: 24.0,
+//                 ),
+//                 Icon(
+//                   Icons.audiotrack,
+//                   color: Colors.green,
+//                   size: 30.0,
+//                 ),
+//                 Icon(
+//                   Icons.beach_access,
+//                   color: Colors.blue,
+//                   size: 36.0,
+//                 ),
+//               ]),
+//         ])
+
+//     );
+//   }
+// }
